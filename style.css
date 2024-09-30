@@ -22,6 +22,9 @@ header {
     border: 32px solid #dedede;
     background-color: #232323;
     padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 /* Styling der einzelnen Display-Divs der Pokemon */
