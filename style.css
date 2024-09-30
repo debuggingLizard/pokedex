@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #89061c;
+    background-color: #89061C;
     color: #dedede;
     font-family: 'Open Sans', sans-serif;
 }
@@ -15,22 +15,56 @@ header {
     padding: 4px;
 }
 
+.main-content-wrapper {
+    flex:1;
+    background-color: #dedede;
+    border-radius: 4px;
+    margin: 0 16px;
+    display: flex;
+}
+
 #main-content {
     flex:1;
-    margin: 0 16px;
+    margin: 16px;
     border-radius: 4px;
-    border: 32px solid #dedede;
-    background-color: #232323;
+    background-color: #96a875;
     padding: 8px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
 /* Styling der einzelnen Display-Divs der Pokemon */
-.pokemon-entry {
+.pkm-entry {
     background-color: rgb(102, 100, 100);
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    border-radius: 4px;
 }
+
+.pkm-entry-info {
+    display: flex;
+}
+
+.pkm-entry-info-left {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.pkm-entry-types {
+    display: flex;
+    flex-direction: column;
+}
+
+.pkm-entry-info img {
+    width: 140px;
+    height: auto;
+}
+
+
 
 footer {
     background-color: #dc0a2d;
