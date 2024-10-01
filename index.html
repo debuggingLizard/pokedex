@@ -10,7 +10,7 @@
     <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <header>HEADER</header>
 
     <section class="main-content-wrapper">
@@ -22,34 +22,12 @@
     <footer>FOOTER</footer>
 
     <!-- Modal -->
-    <section id="modal-wrapper">
-        <div class="modal-card">
-            <div class="modal-top">
-                <div class="modal-top-info">
-                    <div class="modal-top-info-left">
-                        <p>NAME</p>
-                        <p>Types</p>
-                    </div>
-                    <div class="modal-top-info-right">
-                        <p>#001</p>
-                    </div>
-                </div>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
-                    alt="">
-            </div>
-            <div class="modal-bottom">
-                <div class="modal-nav">
-                    <button onclick="renderModalStats('About')">About</button>
-                    <button onclick="renderModalStats('BaseStats')">Base Stats</button>
-                    <button onclick="renderModalStats('Evolution')">Evolution</button>
-                    <button onclick="renderModalStats('Moves')">Moves</button>
-                </div>
-                <div id="modal-stats">
-                    
-                </div>
-            </div>
+    <section id="modal-wrapper" class="modal-wrapper d-none">
+        <div id="modal-card">
+            
         </div>
     </section>
+
 </body>
 
 </html>
