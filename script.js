@@ -13,7 +13,7 @@ async function getOnePokemonData() {
   for (let i = 1; i <= 20; i++) {
     let response = await fetch(url + "pokemon/" + i);
     let pokemonDataAsJson = await response.json();
-    console.log(pokemonDataAsJson);
+    // console.log(pokemonDataAsJson);
     renderPokemonEntries(pokemonDataAsJson, i);
   }
 }
@@ -50,3 +50,66 @@ function getPokemonTypesTemplate(pokemonData, i) {
 }
 
 getOnePokemonData();
+
+// render Functionality for Modal
+const modalTemplates = {
+  templateAbout: function() {
+    console.log('templateAbout');
+    return /*html*/`
+      <table>
+                        <tr>
+                            <td>Species</td>
+                            <td>Seed</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>0.7 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>6.9 kg</td>
+                        </tr>
+                        <tr>
+                            <td>Abilities</td>
+                            <td>Overgrow, Chlorophyl</td>
+                        </tr>
+                    </table>
+    `
+  },
+  templateBaseStats: function() {
+    console.log('templateBaseStats');
+    return /*html*/`
+      <table>
+                        <tr>
+                            <td>test</td>
+                            <td>test</td>
+                        </tr>
+                        <tr>
+                            <td>test</td>
+                            <td>0.7 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>6.9 kg</td>
+                        </tr>
+                        <tr>
+                            <td>Abilities</td>
+                            <td>Overgrow, Chlorophyl</td>
+                        </tr>
+                    </table>
+    `
+  },
+  templateEvolution: function() {
+    console.log('templateEvolution');
+  },
+  templateMoves: function() {
+    console.log('templateMoves');
+  }
+}
+
+function renderModalStats(identifier) {
+  let functionName = 'template' + identifier;
+  let contentRef = document.getElementById('modal-stats');
+  contentRef.innerHTML = "";
+  contentRef.innerHTML = modalTemplates[functionName]();
+}

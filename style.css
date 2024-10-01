@@ -35,6 +35,13 @@ header {
     gap: 8px;
 }
 
+footer {
+    background-color: #dc0a2d;
+    margin: 16px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
 /* Styling der einzelnen Display-Divs der Pokemon */
 .pkm-entry {
     background-color: rgb(102, 100, 100);
@@ -64,16 +71,53 @@ header {
     height: auto;
 }
 
-footer {
-    background-color: #dc0a2d;
-    margin: 16px;
-    border-radius: 4px;
-    padding: 4px;
-}
-
+/* Styling des Overlays */
 #modal-wrapper {
     position: fixed;
     width: 100%;
     height: 100%;
     backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card {
+    background-color: aliceblue;
+    height: 80%;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.modal-top {
+    background-color: rgb(149, 201, 81);
+    border-radius: 4px 4px 0 0;
+    padding: 16px 16px 0;
+}
+
+.modal-top-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-card img {
+    width: 280px;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.modal-bottom {
+    border-radius: 8px;
+    background-color: #b6aaaa;
+    position: relative;
+    top: -32px;
+    padding: 0 16px 16px;
+}
+
+.modal-nav {
+    padding: 48px 0 24px;
+    display: flex;
+    justify-content: space-between;
+    
 }

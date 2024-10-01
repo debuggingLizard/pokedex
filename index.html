@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +9,19 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
+
 <body>
     <header>HEADER</header>
 
     <section class="main-content-wrapper">
         <section id="main-content">
             <!-- pokemon entries will be rendered here -->
-        </section> 
+        </section>
     </section>
-    
+
     <footer>FOOTER</footer>
 
+    <!-- Modal -->
     <section id="modal-wrapper">
         <div class="modal-card">
             <div class="modal-top">
@@ -31,10 +34,22 @@
                         <p>#001</p>
                     </div>
                 </div>
-                <div class="modal-top-img"></div>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
+                    alt="">
             </div>
-            <div class="modal-bottom"></div>
+            <div class="modal-bottom">
+                <div class="modal-nav">
+                    <button onclick="renderModalStats('About')">About</button>
+                    <button onclick="renderModalStats('BaseStats')">Base Stats</button>
+                    <button onclick="renderModalStats('Evolution')">Evolution</button>
+                    <button onclick="renderModalStats('Moves')">Moves</button>
+                </div>
+                <div id="modal-stats">
+                    
+                </div>
+            </div>
         </div>
     </section>
 </body>
+
 </html>
