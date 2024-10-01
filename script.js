@@ -1,24 +1,30 @@
 let url = "https://pokeapi.co/api/v2/";
 
+function init() {
+  getOnePokemonData();
+}
+
+// FUNCTIONALITY FOR DISPLAYING BODY ENTRIES (POKEMONS IN MAIN VIEW)
+// fetch each Pokemon-Data and execute render-body-Function
 async function getOnePokemonData() {
   for (let i = 1; i <= 20; i++) {
     let response = await fetch(url + "pokemon/" + i);
     let pokemonDataAsJson = await response.json();
-    // console.log(pokemonDataAsJson);
     renderPokemonEntries(pokemonDataAsJson, i);
   }
 }
 
+// render-body-Function: getting divs by ID and execute template-functions
 function renderPokemonEntries(pokemonData, i) {
   let entryRef = document.getElementById("main-content");
   entryRef.innerHTML += getPokemonEntriesTemplate(pokemonData, i);
-
   let typesRef = document.getElementById("pkm-types" + i);
   for (let i = 0; i < pokemonData.types.length; i++) {
     typesRef.innerHTML += getPokemonTypesTemplate(pokemonData, i);
   }
 }
 
+// template-function for body-entries
 function getPokemonEntriesTemplate(pokemonData, i) {
   return /*html*/ `
         <div class="pkm-entry" onclick="showModal(${i})">
@@ -34,15 +40,15 @@ function getPokemonEntriesTemplate(pokemonData, i) {
     `;
 }
 
+// template-function for types of body-entries
 function getPokemonTypesTemplate(pokemonData, i) {
   return /*html*/ `
         <span>${pokemonData.types[i].type.name}</span>
     `;
 }
 
-getOnePokemonData();
-
-// render Functionality for Modal-Bottom Tabs
+// FUNCTIONALITY FOR DISPLAYING MODAL (POKEMON IN SINGLE DETAILED VIEW)
+// Object with template-functions for Modal-Tabs (lower half of modal)
 const modalTemplates = {
   templateAbout: function (modalData) {
     console.log("templateAbout");
@@ -100,78 +106,94 @@ const modalTemplates = {
   },
 };
 
-async function renderModalStats(identifier, index) {
-  let functionName = "template" + identifier;
-  let contentRef = document.getElementById("modal-stats");
-  let modalData = await getPokemonModalData(index);
-  contentRef.innerHTML = "";
-  contentRef.innerHTML = modalTemplates[functionName](modalData);
-  if (identifier == 'About') {
-    renderModalAbilities(modalData);
-  }
-}
-
-// onclick/show Modal functionality
-async function getPokemonModalData(index) {
-  let response = await fetch(url + "pokemon/" + index);
-  let pokemonDataAsJson = await response.json();
-  return pokemonDataAsJson;
-}
-
+// executed by onclick on pokemon entry in main view; displays overlay/modal, gets specific pokemon data and executes render-functions
 async function showModal(index) {
   let overlayRef = document.getElementById("modal-wrapper");
   overlayRef.classList.toggle("d-none");
   let modalData = await getPokemonModalData(index);
   renderModalContent(modalData, index);
   renderModalTypes(index);
+  renderModalInitialStats(modalData);
   renderModalAbilities(modalData);
 }
 
+// fetches Data for specific selected (onclicked in main view) pokemon
+async function getPokemonModalData(index) {
+  let response = await fetch(url + "pokemon/" + index);
+  let pokemonDataAsJson = await response.json();
+  return pokemonDataAsJson;
+}
+
+// render-modal function gets div by ID and executes template-fucntion for modal
 function renderModalContent(modalData, index) {
   let modalRef = document.getElementById("modal-card");
   modalRef.innerHTML = "";
-  modalRef.innerHTML = /*html*/ `
-            <div id="modal-top">
-              <div class="modal-top-info">
-                <div class="modal-top-info-left">
-                  <p id="modal-pkm-name">${modalData.name}</p>
-                  <p id="modal-pkm-types"></p>
-                </div>
-                <div class="modal-top-info-right">
-                  <p>#${modalData.id}</p>
-                </div>
-              </div>
-              <img src="${modalData.sprites.other.home.front_default}" alt="Image of ${modalData.name}">
-            </div>
-            <div class="modal-bottom">
-              <div class="modal-nav">
-                <button onclick="renderModalStats('About', ${index})">About</button>
-                <button onclick="renderModalStats('BaseStats', ${index})">Base Stats</button>
-              </div>
-              <div id="modal-stats"></div>
-            </div>
-            <div>
-              <button>previous pkm</button>
-              <button>next pkm</button>
-            </div>
-  `;
-  let modalBottomRef = document.getElementById('modal-stats');
+  modalRef.innerHTML = getModalTemplate(modalData, index);
+}
+
+// renders types into modal by assigning types rendered into main view pokemon-entries
+function renderModalTypes(index) {
+  let typesRef = document.getElementById("pkm-types" + index).innerHTML;
+  let typesModalRef = document.getElementById("modal-pkm-types");
+  typesModalRef.innerHTML = typesRef;
+}
+
+// renders stats in lower half of modal to be shown initially (which would be the first tab on the left) by using template object
+function renderModalInitialStats(modalData) {
+  let modalBottomRef = document.getElementById("modal-stats");
   modalBottomRef.innerHTML = "";
   modalBottomRef.innerHTML = modalTemplates.templateAbout(modalData);
 }
 
-function renderModalTypes(index) {
-  let typesRef = document.getElementById('pkm-types' + index).innerHTML;
-  let typesModalRef = document.getElementById('modal-pkm-types');
-  typesModalRef.innerHTML = typesRef;
-}
-
+// renders abilities into modal (into About-Tab)
 function renderModalAbilities(modalData) {
-  let abilitiesRef = document.getElementById('modal-pkm-abilities');
+  let abilitiesRef = document.getElementById("modal-pkm-abilities");
   abilitiesRef.innerHTML = "";
   for (let i = 0; i < modalData.abilities.length; i++) {
-    abilitiesRef.innerHTML += /*html*/`
+    abilitiesRef.innerHTML += /*html*/ `
       <span>${modalData.abilities[i].ability.name}</span>
-    `
+    `;
+  }
+}
+
+// template-function for modal
+function getModalTemplate(modalData, index) {
+  return /*html*/ `
+          <div id="modal-top">
+            <div class="modal-top-info">
+                <div class="modal-top-info-left">
+                <p id="modal-pkm-name">${modalData.name}</p>
+                <p id="modal-pkm-types"></p>
+              </div>
+              <div class="modal-top-info-right">
+                <p>#${modalData.id}</p>
+              </div>
+            </div>
+            <img src="${modalData.sprites.other.home.front_default}" alt="Image of ${modalData.name}">
+          </div>
+          <div class="modal-bottom">
+            <div class="modal-nav">
+              <button onclick="renderModalStats('About', ${index})">About</button>
+              <button onclick="renderModalStats('BaseStats', ${index})">Base Stats</button>
+            </div>
+            <div id="modal-stats"></div>
+          </div>
+          <div>
+            <button>previous pkm</button>
+            <button>next pkm</button>
+          </div>
+  `;
+}
+
+// executed by onclick on tab-link in lower half of modal (different categories of additional information)
+// gets identifier (to get correct template) and index of pokemon (to fetch correct data) and executes template-function
+async function renderModalStats(identifier, index) {
+  let functionName = "template" + identifier;
+  let contentRef = document.getElementById("modal-stats");
+  let modalData = await getPokemonModalData(index);
+  contentRef.innerHTML = "";
+  contentRef.innerHTML = modalTemplates[functionName](modalData);
+  if (identifier == "About") {
+    renderModalAbilities(modalData);
   }
 }
