@@ -2,18 +2,23 @@ let url = "https://pokeapi.co/api/v2/";
 let indexStart = 1;
 
 function init() {
-  getOnePokemonData(indexStart);
+  getOnePokemonData();
 }
 
 // FUNCTIONALITY FOR DISPLAYING BODY ENTRIES (POKEMONS IN MAIN VIEW)
 // fetch each Pokemon-Data and execute render-body-Function
 async function getOnePokemonData() {
+  let loadRef = document.getElementById('load-more-btn');
+  loadRef.classList.add('d-none');
   for (let i = 0; i < 20; i++) {
     if (indexStart == 152) {break;};
     let response = await fetch(url + "pokemon/" + indexStart);
     let pokemonDataAsJson = await response.json();
     renderPokemonEntries(pokemonDataAsJson, indexStart);
     indexStart++;
+  }
+  if (indexStart < 152) {
+    loadRef.classList.remove('d-none');
   }
 }
 
