@@ -51,7 +51,6 @@ function getPokemonTypesTemplate(pokemonData, i) {
 // Object with template-functions for Modal-Tabs (lower half of modal)
 const modalTemplates = {
   templateAbout: function (modalData) {
-    console.log("templateAbout");
     return /*html*/ `
             <table>
               <tr>
@@ -70,7 +69,6 @@ const modalTemplates = {
     `;
   },
   templateBaseStats: function (modalData) {
-    console.log("templateBaseStats");
     return /*html*/ `
             <table>
               <tr>
@@ -106,15 +104,23 @@ const modalTemplates = {
   },
 };
 
+function closeModal() {
+  let overlayRef = document.getElementById("modal-wrapper");
+  overlayRef.classList.add("d-none");
+  let modalRef = document.getElementById("modal-card");
+  modalRef.innerHTML = "";
+}
+
 // executed by onclick on pokemon entry in main view; displays overlay/modal, gets specific pokemon data and executes render-functions
 async function showModal(index) {
   let overlayRef = document.getElementById("modal-wrapper");
-  overlayRef.classList.toggle("d-none");
+  overlayRef.classList.remove("d-none");
   let modalData = await getPokemonModalData(index);
   renderModalContent(modalData, index);
-  renderModalTypes(index);
+  renderModalTypes(modalData);
   renderModalInitialStats(modalData);
   renderModalAbilities(modalData);
+  disableNavButtons(index)
 }
 
 // fetches Data for specific selected (onclicked in main view) pokemon
@@ -132,10 +138,14 @@ function renderModalContent(modalData, index) {
 }
 
 // renders types into modal by assigning types rendered into main view pokemon-entries
-function renderModalTypes(index) {
-  let typesRef = document.getElementById("pkm-types" + index).innerHTML;
-  let typesModalRef = document.getElementById("modal-pkm-types");
-  typesModalRef.innerHTML = typesRef;
+function renderModalTypes(modalData) {
+  let typesRef = document.getElementById("modal-pkm-types");
+  typesRef.innerHTML = "";
+  for (let i = 0; i < modalData.types.length; i++) {
+    typesRef.innerHTML += /*html*/ `
+      <span>${modalData.types[i].type.name}</span>
+    `;
+  }
 }
 
 // renders stats in lower half of modal to be shown initially (which would be the first tab on the left) by using template object
@@ -153,6 +163,16 @@ function renderModalAbilities(modalData) {
     abilitiesRef.innerHTML += /*html*/ `
       <span>${modalData.abilities[i].ability.name}</span>
     `;
+  }
+}
+
+// disables nav-buttons in modal if necessary
+function disableNavButtons(index) {
+  if (index == 1) {
+    document.getElementById("btn-prev").disabled = true;
+  }
+  if (index == 151) {
+    document.getElementById("btn-next").disabled = true;
   }
 }
 
@@ -179,8 +199,8 @@ function getModalTemplate(modalData, index) {
             <div id="modal-stats"></div>
           </div>
           <div>
-            <button>previous pkm</button>
-            <button>next pkm</button>
+            <button id="btn-prev" onclick="showModal(${index - 1})">previous pkm</button>
+            <button id="btn-next" onclick="showModal(${index + 1})">next pkm</button>
           </div>
   `;
 }
