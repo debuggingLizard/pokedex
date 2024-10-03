@@ -11,7 +11,11 @@
 </head>
 
 <body onload="init()">
-    <header>HEADER</header>
+    <header>
+        HEADER
+        <input id="search-input" type="text" oninput="executeSearch()">
+        <button onclick="clearSearch()">clear search field</button>
+    </header>
 
     <section class="main-content-wrapper">
         <section class="main-content">
@@ -20,7 +24,6 @@
             </div>
             <div class="main-content-loading">
                 <button id="load-more-btn" class="load-more-btn d-none" onclick="getOnePokemonData()">Load More</button>
-                
             </div>
             <!-- <div id="loading-screen" class="loading-wrapper">
                 <div class="loader"></div>

@@ -1,25 +1,35 @@
 let url = "https://pokeapi.co/api/v2/";
 let indexStart = 1;
+let pokemonAllAsJson = {};
+let searchResults = [];
 
 function init() {
   getOnePokemonData();
+  getAllPokemonData();
 }
 
 // FUNCTIONALITY FOR DISPLAYING BODY ENTRIES (POKEMONS IN MAIN VIEW)
 // fetch each Pokemon-Data and execute render-body-Function
 async function getOnePokemonData() {
-  let loadRef = document.getElementById('load-more-btn');
-  loadRef.classList.add('d-none');
+  let loadRef = document.getElementById("load-more-btn");
+  loadRef.classList.add("d-none");
   for (let i = 0; i < 20; i++) {
-    if (indexStart == 152) {break;};
+    if (indexStart == 152) {
+      break;
+    }
     let response = await fetch(url + "pokemon/" + indexStart);
     let pokemonDataAsJson = await response.json();
     renderPokemonEntries(pokemonDataAsJson, indexStart);
     indexStart++;
   }
   if (indexStart < 152) {
-    loadRef.classList.remove('d-none');
+    loadRef.classList.remove("d-none");
   }
+}
+
+async function getAllPokemonData() {
+  let response = await fetch(url + "pokemon?limit=151&offset=0");
+  pokemonAllAsJson = await response.json();
 }
 
 // render-body-Function: getting divs by ID and execute template-functions
@@ -128,7 +138,7 @@ async function showModal(index) {
   renderModalTypes(modalData);
   renderModalInitialStats(modalData);
   renderModalAbilities(modalData);
-  disableNavButtons(index)
+  disableNavButtons(index);
 }
 
 // fetches Data for specific selected (onclicked in main view) pokemon
@@ -197,7 +207,9 @@ function getModalTemplate(modalData, index) {
                 <p>#${modalData.id}</p>
               </div>
             </div>
-            <img src="${modalData.sprites.other.home.front_default}" alt="Image of ${modalData.name}">
+            <img src="${
+              modalData.sprites.other.home.front_default
+            }" alt="Image of ${modalData.name}">
           </div>
           <div class="modal-bottom">
             <div class="modal-nav">
@@ -207,8 +219,12 @@ function getModalTemplate(modalData, index) {
             <div id="modal-stats"></div>
           </div>
           <div>
-            <button id="btn-prev" onclick="showModal(${index - 1})">previous pkm</button>
-            <button id="btn-next" onclick="showModal(${index + 1})">next pkm</button>
+            <button id="btn-prev" onclick="showModal(${
+              index - 1
+            })">previous pkm</button>
+            <button id="btn-next" onclick="showModal(${
+              index + 1
+            })">next pkm</button>
           </div>
   `;
 }
@@ -224,4 +240,35 @@ async function renderModalStats(identifier, index) {
   if (identifier == "About") {
     renderModalAbilities(modalData);
   }
+}
+
+// SEARCH FUNCTIONALITY
+async function executeSearch() {
+  let searchString = document.getElementById("search-input").value;
+  if (searchString.length >= 3) {
+    document.getElementById("main-content-container").innerHTML = "";
+    findPkm(searchString);
+    await getResultPkm();
+    console.log("ich habe gesucht nach: ", searchString);
+    searchResults = [];
+  }
+}
+
+function findPkm(searchString) {
+  searchResults = pokemonAllAsJson.results.filter((pokemon) => pokemon.name.includes(searchString));
+}
+
+async function getResultPkm() {
+  for (let i = 0; i < searchResults.length; i++) {
+    let response = await fetch(searchResults[i].url)
+    let pokemonResultAsJson = await response.json();
+    renderPokemonEntries(pokemonResultAsJson, pokemonResultAsJson.id)
+  }
+}
+
+function clearSearch() {
+  document.getElementById("search-input").value = "";
+  document.getElementById("main-content-container").innerHTML = "";
+  indexStart = 1;
+  getOnePokemonData();
 }
