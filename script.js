@@ -45,7 +45,7 @@ function renderPokemonEntries(pokemonData, i) {
 // template-function for body-entries
 function getPokemonEntriesTemplate(pokemonData, i) {
   return /*html*/ `
-        <div class="pkm-entry" onclick="showModal(${i})">
+        <div class="pkm-entry ${pokemonData.types[0].type.name}" onclick="showModal(${i})">
             <p class="pkm-entry-number">#${pokemonData.id}</p>
             <div class="pkm-entry-info">
                 <div class="pkm-entry-info-left">
@@ -125,13 +125,22 @@ const modalTemplates = {
 function closeModal() {
   let overlayRef = document.getElementById("modal-wrapper");
   overlayRef.classList.add("d-none");
+  document.body.classList.remove('no-scroll');
+  document.body.style.paddingRight = '0';
   let modalRef = document.getElementById("modal-card");
   modalRef.innerHTML = "";
 }
 
+function getScrollbarWidth() {
+  return window.innerWidth - document.documentElement.clientWidth;
+}
+
 // executed by onclick on pokemon entry in main view; displays overlay/modal, gets specific pokemon data and executes render-functions
 async function showModal(index) {
+  let scrollbarWidth = getScrollbarWidth();
   let overlayRef = document.getElementById("modal-wrapper");
+  document.body.classList.add('no-scroll');
+  document.body.style.paddingRight = `${scrollbarWidth}px`;
   overlayRef.classList.remove("d-none");
   let modalData = await getPokemonModalData(index);
   renderModalContent(modalData, index);
@@ -197,7 +206,7 @@ function disableNavButtons(index) {
 // template-function for modal
 function getModalTemplate(modalData, index) {
   return /*html*/ `
-          <div id="modal-top">
+          <div id="modal-top" class="${modalData.types[0].type.name}">
             <div class="modal-top-info">
                 <div class="modal-top-info-left">
                 <p id="modal-pkm-name">${modalData.name}</p>
