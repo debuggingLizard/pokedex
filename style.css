@@ -198,6 +198,20 @@ footer {
     padding: 4px;
 }
 
+footer p {
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: #0f1f3a;
+}
+
+footer a:hover {
+    color: #ffdf18;
+    transition: 0.2s;
+}
+
 /* Styling der einzelnen Display-Divs der Pokemon */
 .pkm-entry {
     display: flex;
