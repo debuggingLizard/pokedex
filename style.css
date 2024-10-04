@@ -194,6 +194,7 @@ button {
     border: 2px solid #be9800;
     color: #4d3d00;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 footer {
@@ -371,6 +372,7 @@ footer a:hover {
     border-bottom: 2px solid #196a9e;
     color: #196a9e;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 #modal-stats {
