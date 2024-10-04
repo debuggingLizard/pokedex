@@ -87,6 +87,8 @@ header {
 #search-input {
     background-color: #51ae5f;
     color: #dedede;
+    font-weight: 600;
+    text-transform: uppercase;
     height: 32px;
     padding: 8px;
     border: 0;
@@ -112,6 +114,7 @@ header {
     border: 2px solid #00080d;
     font-size: 11px;
     color: #dedede;
+    font-weight: 600;
 }
 
 .clear-search:hover {
