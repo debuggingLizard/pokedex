@@ -33,9 +33,24 @@ header {
     padding-top: 4px;
 }
 
-.dots-content {
+.wrapper-top {
     gap: 24px;
     padding-top: 12px;
+}
+
+.wrapper-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px 8px 48px;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff2045;
+    box-shadow: inset -2px -2px 4px 0px rgba(0, 0, 0, 0.4);
 }
 
 .dot {
@@ -120,7 +135,7 @@ header {
 
 .main-content {
     flex: 1;
-    margin: 12px 24px 24px;
+    margin: 12px 24px 4px;
     border-radius: 4px 4px 4px 32px;
     box-shadow: inset 0px 0px 0px 2px #0f1f3a;
     background-image: url(./assets/img/bg-noisy.png);
