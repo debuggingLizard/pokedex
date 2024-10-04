@@ -22,6 +22,10 @@ header {
     justify-content: space-between;
 }
 
+button {
+    font-family: 'Afacad Flux';
+}
+
 .header-left {
     display: flex;
     gap: 12px;
@@ -127,6 +131,10 @@ header {
 
 .d-none {
     display: none !important;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 .no-scroll {
@@ -268,11 +276,14 @@ footer {
 #modal-card {
     border-radius: 4px;
     background-color: transparent;
+    color: #232323;
 }
 
 #modal-top {
-    border-radius: 4px 4px 0 0;
+    border-radius: 12px 12px 0 0;
     padding: 16px 16px 0;
+    height: 400px;
+    width: 280px;
 }
 
 .modal-top-info {
@@ -280,7 +291,28 @@ footer {
     justify-content: space-between;
 }
 
-#modal-card img {
+#modal-pkm-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#modal-pkm-types {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#modal-pkm-types span {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    padding: 2px 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+#modal-top img {
     width: 280px;
     height: auto;
     position: relative;
@@ -288,11 +320,13 @@ footer {
 }
 
 .modal-bottom {
-    border-radius: 8px;
-    background-color: #b6aaaa;
+    border-radius: 12px;
+    background-color: #dedede;
     position: relative;
     top: -32px;
     padding: 0 16px 16px;
+    height: 260px;
+    width: 280px;
 }
 
 .modal-nav {
@@ -300,6 +334,65 @@ footer {
     display: flex;
     justify-content: space-between;
 }
+
+.modal-nav button {
+    background-color: transparent;
+    border: 2px solid transparent;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.modal-nav button.focus {
+    border-bottom: 2px solid #232323;
+}
+
+.modal-nav button:hover {
+    border-bottom: 2px solid #196a9e;
+    color: #196a9e;
+    transition: 0.2s;
+}
+
+#modal-stats {
+    display: flex;
+    justify-content: center;
+}
+
+#modal-stats table {
+    width: 100%;
+}
+
+#modal-stats img {
+    width:160px;
+}
+
+#modal-pkm-abilities span {
+    border: 1px solid #232323;
+    border-radius: 8px;
+    padding: 0 2px 2px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-buttons button {
+    background-color: #dedede;
+    border: 0;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 4px 8px;
+    font-weight: 500;
+}
+
+.modal-buttons button:hover {
+    background-color: #196a9e;
+    color: #dedede;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+
 
 
 /* Loader */
