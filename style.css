@@ -13,6 +13,86 @@ header {
     margin: 16px;
     border-radius: 4px;
     padding: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    gap: 12px;
+}
+
+.header-logo {
+    width: 240px;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    padding-top: 4px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 4px 0px rgba(0, 0, 0, 0.4);
+}
+
+.red {
+    background-color: #ff2045;
+}
+
+.yellow {
+    background-color: #ffdf18;
+}
+
+.green {
+    background-color: #3bc04f;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 12px;
+}
+
+#search-input {
+    background-color: #51ae5f;
+    height: 32px;
+    padding: 8px;
+    border: 0;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: inset 0px 0px 0px 2px #326d3b;
+}
+
+#search-input::placeholder {
+    color: #9cdfa6;
+}
+
+#search-input:focus {
+    box-shadow: inset 0px 0px 0px 2px #dedede;
+}
+
+.clear-search {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background-color: #232323;
+    border: 2px solid #00080d;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: #dedede;
+}
+
+.clear-search:hover {
+    background-color: #28aafd;
+    border: 2px solid #196a9e;
+    color: #232323;
+    transition: 0.2s;
 }
 
 .d-none {
@@ -24,7 +104,7 @@ header {
 }
 
 .main-content-wrapper {
-    flex:1;
+    flex: 1;
     background-color: #dedede;
     border-radius: 4px;
     margin: 0 16px;
@@ -32,7 +112,7 @@ header {
 }
 
 .main-content {
-    flex:1;
+    flex: 1;
     margin: 16px;
     border-radius: 4px;
     background-color: #96a875;
@@ -141,34 +221,47 @@ footer {
     height: 60px;
     aspect-ratio: 1;
     position: relative;
-  }
-  .loader::before,
-  .loader::after {
+}
+
+.loader::before,
+.loader::after {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: 50%;
     transform-origin: bottom;
-  }
-  .loader::after {
+}
+
+.loader::after {
     background:
-      radial-gradient(at 75% 15%,#fffb,#0000 35%),
-      radial-gradient(at 80% 40%,#0000,#0008),
-      radial-gradient(circle  5px,#fff 94%,#0000),
-      radial-gradient(circle 10px,#000 94%,#0000),
-      linear-gradient(#F93318 0 0) top   /100% calc(50% - 5px),
-      linear-gradient(#fff    0 0) bottom/100% calc(50% - 5px)
-      #000;
+        radial-gradient(at 75% 15%, #fffb, #0000 35%),
+        radial-gradient(at 80% 40%, #0000, #0008),
+        radial-gradient(circle 5px, #fff 94%, #0000),
+        radial-gradient(circle 10px, #000 94%, #0000),
+        linear-gradient(#F93318 0 0) top /100% calc(50% - 5px),
+        linear-gradient(#fff 0 0) bottom/100% calc(50% - 5px) #000;
     background-repeat: no-repeat;
-    animation: l20 1s infinite cubic-bezier(0.5,120,0.5,-120);
-  }
-  .loader::before {
+    animation: l20 1s infinite cubic-bezier(0.5, 120, 0.5, -120);
+}
+
+.loader::before {
     /* background:#ddd;
     filter: blur(8px); */
     transform: scaleY(0.4) translate(-13px, 0px);
-  }
-  @keyframes l20 { 
-   30%,70% {transform:rotate(0deg)}
-   49.99%  {transform:rotate(0.2deg)}
-   50%     {transform:rotate(-0.2deg)}
-  }
+}
+
+@keyframes l20 {
+
+    30%,
+    70% {
+        transform: rotate(0deg)
+    }
+
+    49.99% {
+        transform: rotate(0.2deg)
+    }
+
+    50% {
+        transform: rotate(-0.2deg)
+    }
+}

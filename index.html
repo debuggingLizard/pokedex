@@ -14,9 +14,18 @@
 
 <body onload="init()">
     <header>
-        HEADER
-        <input id="search-input" type="text" oninput="executeSearch()">
-        <button onclick="clearSearch()">clear search field</button>
+        <div class="header-left">
+            <img class="header-logo" src="./assets/img/logo.png" alt="">
+            <div class="dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+        </div>
+        <div class="search">
+            <input id="search-input" type="text" placeholder="SEARCH..." oninput="executeSearch()">
+            <button class="clear-search" onclick="clearSearch()">CLEAR</button>
+        </div>
     </header>
 
     <section class="main-content-wrapper">
@@ -36,7 +45,7 @@
     <!-- Modal -->
     <section id="modal-wrapper" class="modal-wrapper d-none" onclick="closeModal()">
         <div id="modal-card" onclick="event.stopPropagation()">
-            
+
         </div>
     </section>
 
