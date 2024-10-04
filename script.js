@@ -71,10 +71,10 @@ function renderPokemonEntries(pokemonData, i) {
 function getPokemonEntriesTemplate(pokemonData, i) {
   return /*html*/ `
         <div class="pkm-entry ${pokemonData.types[0].type.name}" onclick="showModal(${i})">
-            <p class="pkm-entry-number">#${pokemonData.id}</p>
+            <p class="pkm-entry-number">#${(pokemonData.id).toString().padStart(3, '0')}</p>
             <div class="pkm-entry-info">
                 <div class="pkm-entry-info-left">
-                    <p>${pokemonData.name}</p>
+                    <p>${(pokemonData.name).toUpperCase()}</p>
                     <div class="pkm-entry-types" id="pkm-types${i}"></div>
                 </div>
                 <img src="${pokemonData.sprites.other.home.front_default}" alt="Image of ${pokemonData.name}">
@@ -86,7 +86,7 @@ function getPokemonEntriesTemplate(pokemonData, i) {
 // template-function for types of body-entries
 function getPokemonTypesTemplate(pokemonData, i) {
   return /*html*/ `
-        <span>${pokemonData.types[i].type.name}</span>
+        <span>${(pokemonData.types[i].type.name).toUpperCase()}</span>
     `;
 }
 
