@@ -23,6 +23,7 @@ async function getOnePokemonData() {
 
   for (let i = 0; i < 20; i++) {
     if (indexStart == 152) {
+      indexStart = 161;
       break;
     }
     let response = await fetch(url + "pokemon/" + indexStart);
@@ -164,7 +165,9 @@ async function showModal(index) {
   let scrollbarWidth = getScrollbarWidth();
   let overlayRef = document.getElementById("modal-wrapper");
   document.body.classList.add('no-scroll');
-  document.body.style.paddingRight = `${scrollbarWidth}px`;
+  if (scrollbarWidth > 0) {
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+  };
   overlayRef.classList.remove("d-none");
   let modalData = await getPokemonModalData(index);
   renderModalContent(modalData, index);
