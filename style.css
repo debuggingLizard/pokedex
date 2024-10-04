@@ -7,6 +7,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100vh;
     background-color: #89061C;
     color: #dedede;
@@ -15,11 +16,13 @@ body {
 
 header {
     background-color: #dc0a2d;
-    margin: 16px;
     border-radius: 4px;
     padding: 4px;
     display: flex;
     justify-content: space-between;
+    max-width: 1440px;
+    width: calc(100% - 32px);
+    margin: 16px;
 }
 
 button {
@@ -145,9 +148,11 @@ button {
     flex: 1;
     background-color: #dedede;
     border-radius: 4px 4px 4px 32px;
-    margin: 0 16px;
     display: flex;
     flex-direction: column;
+    max-width: 1440px;
+    width: calc(100% - 32px);
+    margin: 0 16px;
 }
 
 .main-content {
@@ -193,9 +198,11 @@ button {
 
 footer {
     background-color: #dc0a2d;
-    margin: 16px;
     border-radius: 4px;
     padding: 4px;
+    max-width: 1440px;
+    width: calc(100% - 32px);
+    margin: 16px;
 }
 
 footer p {
