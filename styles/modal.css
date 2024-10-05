@@ -12,18 +12,22 @@
     border-radius: 4px;
     background-color: transparent;
     color: #232323;
+    max-height: calc(100vh - 8px);
+    margin: 4px 0;
 }
 
 #modal-top {
     border-radius: 12px 12px 0 0;
     padding: 16px 16px 0;
-    height: 400px;
     width: 280px;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-top-info {
     display: flex;
     justify-content: space-between;
+    height: 124px;
 }
 
 #modal-pkm-name {
@@ -48,10 +52,11 @@
 }
 
 #modal-top img {
-    width: 280px;
+    width: 220px;
     height: auto;
     position: relative;
     z-index: 1;
+    align-self: center;
 }
 
 .modal-bottom {

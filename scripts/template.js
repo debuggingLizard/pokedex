@@ -1,6 +1,6 @@
 const modalTemplates = {
-    templateAbout: function (modalData) {
-      return /*html*/ `
+  templateAbout: function (modalData) {
+    return /*html*/ `
               <table>
                 <tr>
                   <td class="bold">Height</td>
@@ -16,9 +16,9 @@ const modalTemplates = {
                 </tr>
               </table>
       `;
-    },
-    templateBaseStats: function (modalData) {
-      return /*html*/ `
+  },
+  templateBaseStats: function (modalData) {
+    return /*html*/ `
               <table>
                 <tr>
                   <td class="bold">HP</td>
@@ -46,13 +46,13 @@ const modalTemplates = {
                 </tr>
               </table>
       `;
-    },
-    templateShiny: function (modalData) {
-      return /*html*/`
+  },
+  templateShiny: function (modalData) {
+    return /*html*/ `
         <img src="${modalData.sprites.other.home.front_shiny}" alt="Image of ${modalData.name}">
-      `
-    }
-  };
+      `;
+  },
+};
 
 function getPokemonEntriesTemplate(pokemonData, i) {
   return /*html*/ `
@@ -82,15 +82,15 @@ function getPokemonTypesTemplate(pokemonData, i) {
 }
 
 function getModalTemplate(modalData, index) {
-    return /*html*/ `
+  return /*html*/ `
             <div id="modal-top" class="${modalData.types[0].type.name}">
               <div class="modal-top-info">
                   <div class="modal-top-info-left">
-                  <p id="modal-pkm-name">${(modalData.name).toUpperCase()}</p>
+                  <p id="modal-pkm-name">${modalData.name.toUpperCase()}</p>
                   <p id="modal-pkm-types"></p>
                 </div>
                 <div class="modal-top-info-right">
-                  <p>#${(modalData.id).toString().padStart(3, '0')}</p>
+                  <p>#${modalData.id.toString().padStart(3, "0")}</p>
                 </div>
               </div>
               <img src="${
@@ -106,9 +106,14 @@ function getModalTemplate(modalData, index) {
               <div id="modal-stats"></div>
             </div>
             <div class="modal-buttons">
-              <button id="btn-prev" onclick="showModal(${index - 1})">&#8617; #${(index - 1).toString().padStart(3, '0')}</button>
-              <button id="btn-next" onclick="showModal(${index + 1})">#${(index + 1).toString().padStart(3, '0')} &#8618;</button>
+              <button id="btn-prev" onclick="showModal(${
+                index - 1
+              })">&#8617; #${(index - 1).toString().padStart(3, "0")}</button>
+              <button id="btn-next" onclick="showModal(${index + 1})">#${(
+    index + 1
+  )
+    .toString()
+    .padStart(3, "0")} &#8618;</button>
             </div>
     `;
-  }
-
+}

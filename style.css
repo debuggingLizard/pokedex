@@ -125,7 +125,6 @@ button {
     cursor: pointer;
 }
 
-/* Main Content */
 .main-content-wrapper {
     flex: 1;
     background-color: #dedede;
@@ -168,7 +167,6 @@ button {
     padding: 16px 0 8px;
 }
 
-/* Loader */
 .loader {
     height: 60px;
     aspect-ratio: 1;
@@ -247,7 +245,6 @@ button {
     box-shadow: inset -2px -2px 4px 0px rgba(0, 0, 0, 0.4);
 }
 
-/* Footer */
 footer {
     background-color: #dc0a2d;
     border-radius: 4px;
