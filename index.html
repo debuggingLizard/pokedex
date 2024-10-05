@@ -8,9 +8,16 @@
     <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/entries.css">
+    <link rel="stylesheet" href="./styles/modal.css">
     <link rel="stylesheet" href="./styles/type-colors.css">
     <link rel="stylesheet" href="./styles/responsive.css">
+
+    <script src="./scripts/template.js"></script>
     <script src="script.js"></script>
+    <script src="./scripts/modal.js"></script>
+    <script src="./scripts/search.js"></script>
+   
 </head>
 
 <body onload="init()">
@@ -35,36 +42,31 @@
             <div class="dot red"></div>
         </div>
         <section class="main-content">
-            <div id="main-content-container">
-                <!-- pokemon entries will be rendered here -->
-            </div>
+            <div id="main-content-container"></div>
             <div class="main-content-loading">
                 <div id="loading-animation" class="loader"></div>
-                <button id="load-more-btn" class="load-more-btn d-none" onclick="getOnePokemonData()">LOAD MORE</button>
+                <button id="load-more-btn" class="load-more-btn d-none" onclick="renderPokemonEntries()">LOAD MORE</button>
             </div>
         </section>
         <div class="wrapper-bottom">
             <div class="circle"></div>
             <div class="lines">
                 <svg width="24" height="32" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" y1="20" x2="200" y2="20" stroke="black" stroke-width="10"/>
-                    <line x1="0" y1="60" x2="200" y2="60" stroke="black" stroke-width="10"/>
-                    <line x1="0" y1="100" x2="200" y2="100" stroke="black" stroke-width="10"/>
-                    <line x1="0" y1="140" x2="200" y2="140" stroke="black" stroke-width="10"/>
-                  </svg>
+                    <line x1="0" y1="20" x2="200" y2="20" stroke="black" stroke-width="10" />
+                    <line x1="0" y1="60" x2="200" y2="60" stroke="black" stroke-width="10" />
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="black" stroke-width="10" />
+                    <line x1="0" y1="140" x2="200" y2="140" stroke="black" stroke-width="10" />
+                </svg>
             </div>
         </div>
     </section>
 
     <footer>
-            <p>data provided by <a href="https://pokeapi.co/">pokéAPI</a> &#9829;</p>
+        <p>data provided by <a href="https://pokeapi.co/">pokéAPI</a> &#9829;</p>
     </footer>
 
-    <!-- Modal -->
     <section id="modal-wrapper" class="modal-wrapper d-none" onclick="closeModal()">
-        <div id="modal-card" onclick="event.stopPropagation()">
-
-        </div>
+        <div id="modal-card" onclick="event.stopPropagation()"></div>
     </section>
 
 </body>

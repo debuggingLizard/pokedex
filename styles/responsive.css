@@ -20,13 +20,15 @@
 }
 
 @media (max-width:400px) {
-    header, footer {
+
+    header,
+    footer {
         width: calc(100% - 16px);
         margin: 16px 4px;
     }
 
     .header-logo {
-        width:180px;
+        width: 180px;
     }
 
     .main-content-wrapper {
