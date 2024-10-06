@@ -1,6 +1,7 @@
 async function executeSearch() {
   let searchString = document.getElementById("search-input").value;
   if (searchString.length >= 3) {
+    searchString = searchString.toLowerCase();
     document.getElementById("load-more-btn").classList.add("d-none");
     document.getElementById("loading-animation").classList.remove("d-none");
     document.getElementById("main-content-container").innerHTML = "";
