@@ -4,15 +4,15 @@ async function executeSearch() {
     document.getElementById("load-more-btn").classList.add("d-none");
     document.getElementById("loading-animation").classList.remove("d-none");
     document.getElementById("main-content-container").innerHTML = "";
-    findPkm(searchString);
+    await findPkm(searchString);
     await getResultPkm();
     document.getElementById("loading-animation").classList.add("d-none");
     searchResults = [];
   }
 }
 
-function findPkm(searchString) {
-  searchResults = pokemonAllAsJson.results.filter((pokemon) =>
+async function findPkm(searchString) {
+  searchResults = await pokemonAllAsJson.results.filter((pokemon) =>
     pokemon.name.includes(searchString)
   );
 }

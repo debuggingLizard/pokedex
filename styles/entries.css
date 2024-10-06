@@ -6,18 +6,17 @@
     cursor: pointer;
     padding: 8px;
     color: #232323;
+    transition: 0.2s ease-in-out; 
 }
 
 .pkm-entry:hover {
     color: #dedede;
     box-shadow: inset 0px 0px 2px 4px rgba(255, 255, 255, 0.28);
     filter: saturate(140%);
-    transition: 0.2s ease-in-out;
 }
 
 .pkm-entry:hover img {
     transform: scaleX(-1) scale(1.2);
-    transition: 0.2s ease-in-out;
 }
 
 .pkm-entry-number {
@@ -60,4 +59,5 @@
 .pkm-entry-info img {
     width: 140px;
     height: auto;
+    transition: 0.2s ease-in-out;
 }
